@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Даниил Щербинин | Мультимедийный Дизайнер | 3D, Моушн, Графика, Презентации</title>
+  <meta name="description" content="Премиальное портфолио Даниила Щербинина. Работы в сферах 3D графики, моушн-дизайна, графического дизайна, презентаций и верстки полиграфии в стиле Robin Noguier.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts: DM Serif Display, Playfair Display, Space Mono, Syne, Outfit, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Mono:ital,wght@0,700;1,700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Supabase JS Client library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- PDF.js library for seamless rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    // Load worker via blob to bypass CORS/Origin issues on localhost
+    const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    fetch(workerUrl)
+      .then(res => res.blob())
+      .then(blob => {
+        const blobUrl = URL.createObjectURL(blob);
+        pdfjsLib.GlobalWorkerOptions.workerSrc = blobUrl;
+      })
+      .catch(() => {
+        console.warn('Fallback to synchronous fake worker mode');
+      });
+  </script>
+</head>
+<body>
+
+  <!-- Custom Cursor in Mint Green -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+  <!-- Background Blobs / Organic Liquid Drops (SVG-based for perfect banding-free gradients and complex shapes) -->
+  <div class="background-blobs" id="background-blobs">
+    
+    <!-- Blob 1: Wavy Peanut Shape (Top-Left) -->
+    <svg class="blob blob-1" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="blob-grad-unified-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+          <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+          <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+          <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+          <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+          <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#blob-grad-unified-1)">
+        <animate 
+          attributeName="d" 
+          dur="25s" 
+          repeatCount="indefinite"
+          values="
+            M 40,40 C 80,20 90,80 140,50 C 180,20 170,120 130,140 C 90,160 80,110 40,130 C 10,150 20,70 40,40 Z;
+            M 50,30 C 90,10 110,60 150,40 C 190,20 180,110 140,130 C 100,150 90,100 50,120 C 10,140 10,50 50,30 Z;
+            M 35,45 C 75,25 95,75 135,45 C 175,15 165,115 125,135 C 85,155 85,105 45,125 C 5,145 15,65 35,45 Z;
+            M 40,40 C 80,20 90,80 140,50 C 180,20 170,120 130,140 C 90,160 80,110 40,130 C 10,150 20,70 40,40 Z
+          "
+        />
+      </path>
+    </svg>
+
+    <!-- Blob 2: Hook / Comma Shape (Bottom-Right) -->
+    <svg class="blob blob-2" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="blob-grad-unified-2" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+          <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+          <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+          <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+          <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+          <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#blob-grad-unified-2)">
+        <animate 
+          attributeName="d" 
+          dur="30s" 
+          repeatCount="indefinite"
+          values="
+            M 50,30 C 90,20 120,50 140,90 C 160,130 180,170 140,170 C 100,170 90,120 70,110 C 50,100 20,130 20,90 C 20,50 30,30 50,30 Z;
+            M 45,35 C 85,25 115,55 135,85 C 155,115 175,165 135,165 C 95,165 85,115 65,105 C 45,95 15,125 15,85 C 15,45 25,35 45,35 Z;
+            M 55,25 C 95,15 125,45 145,95 C 165,145 185,175 145,175 C 105,175 95,125 75,115 C 55,105 25,135 25,95 C 25,55 35,25 55,25 Z;
+            M 50,30 C 90,20 120,50 140,90 C 160,130 180,170 140,170 C 100,170 90,120 70,110 C 50,100 20,130 20,90 C 20,50 30,30 50,30 Z
+          "
+        />
+      </path>
+    </svg>
+
+    <!-- Blob 3: Clover / Splatter Shape (Bottom-Left) -->
+    <svg class="blob blob-3" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="blob-grad-unified-3" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+          <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+          <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+          <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+          <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+          <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#blob-grad-unified-3)">
+        <animate 
+          attributeName="d" 
+          dur="22s" 
+          repeatCount="indefinite"
+          values="
+            M 60,40 C 90,20 120,50 120,80 C 120,110 160,130 130,160 C 100,190 70,160 50,160 C 30,160 20,120 30,90 C 40,60 30,60 60,40 Z;
+            M 55,45 C 85,25 115,45 115,75 C 115,105 155,125 125,155 C 95,185 65,155 45,155 C 25,155 15,115 25,85 C 35,55 25,55 55,45 Z;
+            M 65,35 C 95,15 125,55 125,85 C 125,115 165,135 135,165 C 105,195 75,165 55,165 C 35,165 25,125 35,95 C 45,65 35,65 65,35 Z;
+            M 60,40 C 90,20 120,50 120,80 C 120,110 160,130 130,160 C 100,190 70,160 50,160 C 30,160 20,120 30,90 C 40,60 30,60 60,40 Z
+          "
+        />
+      </path>
+    </svg>
+
+    <!-- Blob 4: Elongated Spatter (Top-Right) -->
+    <svg class="blob blob-4" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="blob-grad-unified-4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+          <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+          <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+          <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+          <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+          <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#blob-grad-unified-4)">
+        <animate 
+          attributeName="d" 
+          dur="28s" 
+          repeatCount="indefinite"
+          values="
+            M 50,20 C 80,40 100,60 120,100 C 140,140 160,180 120,180 C 80,180 90,140 60,110 C 30,80 20,40 50,20 Z;
+            M 45,25 C 75,45 95,65 115,95 C 135,125 155,175 115,175 C 75,175 85,135 55,105 C 25,75 15,45 45,25 Z;
+            M 55,15 C 85,35 105,55 125,105 C 145,155 165,185 125,185 C 85,185 95,145 65,115 C 35,85 25,35 55,15 Z;
+            M 50,20 C 80,40 100,60 120,100 C 140,140 160,180 120,180 C 80,180 90,140 60,110 C 30,80 20,40 50,20 Z
+          "
+        />
+      </path>
+    </svg>
+
+  </div>
+
+  <!-- Header / Navigation (Robin Noguier Style: minimalist & clean) -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="logo hoverable">
+        <span>Д. ЩЕРБИНИН</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="hoverable active">Проекты</a></li>
+          <li><a href="javascript:void(0)" class="hoverable modal-trigger" data-modal="resume">Опыт</a></li>
+          <li><a href="javascript:void(0)" class="hoverable modal-trigger" data-modal="contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Fixed Left Panel for Project Metadata (Robin Noguier style) -->
+  <div class="fixed-info-panel" id="project-info-container">
+    <!-- Dynamic text blocks will be rendered here and cross-faded -->
+    <div class="loading-info-text">
+      <span>Загрузка данных...</span>
+    </div>
+  </div>
+
+  <!-- Vertical Projects Pager (Dashes Navigation on the right edge) -->
+  <div class="projects-vertical-pager" id="projects-pager">
+    <!-- Dynamic dots will be rendered here -->
+  </div>
+
+  <main class="sections-wrapper">
+    <!-- Right Scrolling Section (Scroll Snap Enabled) -->
+    <div id="portfolio-grid" class="projects-visual-list">
+      <!-- Dynamically generated 3D visuals will be placed here -->
+      <div class="loading-status">
+        <div class="spinner"></div>
+        <span>Загрузка проектов...</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Experience Overlay Modal (Slide-in panel from top to bottom) -->
+  <div class="info-overlay-modal" id="experience-modal">
+    <!-- Minimalist Floating Back Button pinned to top-right -->
+    <button class="info-modal-close hoverable" aria-label="Закрыть">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-content">
+      <div class="info-grid">
+        <!-- Left Column: Biography and Experience -->
+        <div class="info-column-left">
+          <span class="info-label">Даниил Щербинин</span>
+          <h2 class="info-section-title">Опыт & Образование</h2>
+          
+          <div class="info-block-item">
+            <div class="info-item-meta">Июнь 2025 — настоящее время</div>
+            <h4 class="info-item-title">Специалист по графическому дизайну</h4>
+            <div class="info-item-organization">Научно-исследовательский институт железнодорожного транспорта (ВНИИЖТ)</div>
+            <p class="info-item-description">Создание B2B презентаций, верстка каталогов, 3D благоустройство территорий, моушн-графика и внедрение генеративных AI-моделей (LoRA, ControlNet).</p>
+          </div>
+
+          <div class="info-block-item">
+            <div class="info-item-meta">Октябрь 2023 — Июнь 2025</div>
+            <h4 class="info-item-title">Графический дизайнер</h4>
+            <div class="info-item-organization">АО «ТВ БРИКС»</div>
+            <p class="info-item-description">Генеративный дизайн и иллюстрации для веб-журнала на базе нейросетей. Сканирование, ретушь и реставрация архивов советского журнала «За рубежом». Разработка макетов полиграфии.</p>
+          </div>
+
+          <div class="info-block-item">
+            <div class="info-item-meta">Сентябрь 2022 — Июнь 2025</div>
+            <h4 class="info-item-title">Графический дизайнер</h4>
+            <div class="info-item-organization">ОАО «Ангстрем»</div>
+            <p class="info-item-description">Разработка деловой полиграфии, roll-up стендов и фирменного мерча. Дизайн презентаций и UI сайта. 2D/3D motion-анимация сложных процессов. 3D-моделирование корпусов микросхем.</p>
+          </div>
+
+          <div class="info-block-item education-meta-block">
+            <div class="info-item-meta">2025 — 2027</div>
+            <h4 class="info-item-title">Магистр дизайна</h4>
+            <div class="info-item-organization">МИЭТ, Институт цифрового дизайна</div>
+          </div>
+
+          <div class="info-block-item">
+            <div class="info-item-meta">2021 — 2025</div>
+            <h4 class="info-item-title">Информационные системы и технологии в дизайне</h4>
+            <div class="info-item-organization">Московский институт электронной техники</div>
+          </div>
+        </div>
+
+        <!-- Right Column: Skills (Redesigned as Bento widget grid) -->
+        <div class="info-column-right">
+          <div class="skills-block">
+            <span class="info-label">Навыки</span>
+            <h3 class="info-subtitle">Технический стек</h3>
+            <div class="info-skills-list">
+              
+              <!-- РЯДЫ 1-2: 4 квадратных плитки (каждая занимает 1 колонку в ширину и 2 строки в высоту) -->
+              <!-- Figma -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 5.5A2.5 2.5 0 0 1 7.5 3h3a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 10.5 11h-3A2.5 2.5 0 0 1 5 8.5v-3z"/>
+                    <path d="M5 15.5A2.5 2.5 0 0 1 7.5 13h3a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 10.5 21h-3A2.5 2.5 0 0 1 5 18.5v-3z"/>
+                    <path d="M12 5.5A2.5 2.5 0 0 1 14.5 3h3a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 17.5 11h-3A2.5 2.5 0 0 1 12 8.5v-3z"/>
+                    <path d="M12 15.5A2.5 2.5 0 0 1 14.5 13h3a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 17.5 21h-3a2.5 2.5 0 0 1-2.5-2.5v-3z"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Figma</div>
+                  <div class="bento-skill-subtext">UI/UX</div>
+                </div>
+              </div>
+              
+              <!-- Photoshop -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    <path d="M9 8h2.5c1.4 0 2.5 1 2.5 2.5S12.9 13 11.5 13H9V8z"/>
+                    <path d="M9 13v3"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Photoshop</div>
+                  <div class="bento-skill-subtext">Растр</div>
+                </div>
+              </div>
+
+              <!-- Illustrator -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    <path d="M9 16l3-8 3 8"/>
+                    <path d="M10 13h4"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Illustrator</div>
+                  <div class="bento-skill-subtext">Вектор</div>
+                </div>
+              </div>
+
+              <!-- InDesign -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    <path d="M9 8h6"/>
+                    <path d="M12 8v8"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">InDesign</div>
+                  <div class="bento-skill-subtext">Верстка</div>
+                </div>
+              </div>
+
+              <!-- РЯД 3: 2 прямоугольных виджета (каждый занимает 2 колонки в ширину и 1 строку в высоту) -->
+              <!-- Blender 3D -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    <path d="M2 12h20"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Blender 3D</div>
+                  <div class="bento-skill-subtext">3D Моделирование & Рендеринг</div>
+                </div>
+              </div>
+
+              <!-- Cinema 4D -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Cinema 4D</div>
+                  <div class="bento-skill-subtext">3D Моушн & Симуляция</div>
+                </div>
+              </div>
+
+              <!-- РЯДЫ 4-5: 3ds Max (квадрат слева), Unreal Engine + After Effects (два прямоугольника в центре), Premiere Pro (квадрат справа) -->
+              <!-- 3ds Max -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">3ds Max</div>
+                  <div class="bento-skill-subtext">Полигоны</div>
+                </div>
+              </div>
+
+              <!-- Unreal Engine 5 (Ряд 4 по центру) -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v8"/>
+                    <path d="M8 12h8"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Unreal Engine 5</div>
+                  <div class="bento-skill-subtext">Real-time 3D & Окружение</div>
+                </div>
+              </div>
+
+              <!-- Premiere Pro (Квадрат справа) -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7"/>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Premiere</div>
+                  <div class="bento-skill-subtext">Монтаж</div>
+                </div>
+              </div>
+
+              <!-- After Effects (Ряд 5 по центру - встанет точно под Unreal Engine) -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    <path d="M7 16l3-8 3 8"/>
+                    <path d="M8 13h4"/>
+                    <path d="M15 11h2.5c1.4 0 2.5 1 2.5 2.5s-1.1 2.5-2.5 2.5H15V11z"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">After Effects</div>
+                  <div class="bento-skill-subtext">Анимация & Эффекты</div>
+                </div>
+              </div>
+
+              <!-- РЯД 6: 2 прямоугольных виджета (4 колонки) -->
+              <!-- Stable Diffusion -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.88A2.5 2.5 0 0 1 9.5 2z"/>
+                    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.88A2.5 2.5 0 0 0 14.5 2z"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Stable Diffusion</div>
+                  <div class="bento-skill-subtext">AI Генерация & LoRA</div>
+                </div>
+              </div>
+
+              <!-- Veo 3 & Kling -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="4"/>
+                    <path d="M15 10l-4-3v10l4-3z"/>
+                    <path d="M2 12h20M12 2v20"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Veo 3 & Kling</div>
+                  <div class="bento-skill-subtext">AI Генерация видео</div>
+                </div>
+              </div>
+
+              <!-- РЯДЫ 7-8: Midjourney (квадрат слева), Fusion 360 + Substance (два прямоугольника в центре), 3D Печать (квадрат справа) -->
+              <!-- Midjourney -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 22s2.5-4.5 10-4.5 10 4.5 10 4.5"/>
+                    <path d="M12 2a5 5 0 1 0 0 10 5 5 0 1 0 0-10z"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Midjourney</div>
+                  <div class="bento-skill-subtext">AI Арт</div>
+                </div>
+              </div>
+
+              <!-- Fusion 360 (Ряд 7 по центру) -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                    <path d="M12 6v12M6 12h12"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Fusion 360</div>
+                  <div class="bento-skill-subtext">CAD & CAM Проектирование</div>
+                </div>
+              </div>
+
+              <!-- 3D Печать (Квадрат справа) -->
+              <div class="bento-skill-card hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                    <path d="M6 9V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5"/>
+                    <rect x="6" y="14" width="12" height="8" rx="1"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">3D Печать</div>
+                  <div class="bento-skill-subtext">FDM & SLA</div>
+                </div>
+              </div>
+
+              <!-- Substance Painter (Ряд 8 по центру - встанет точно под Fusion 360) -->
+              <div class="bento-skill-card rect-widget hoverable">
+                <div class="bento-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 2 12 22Z"/>
+                    <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"/>
+                    <circle cx="12" cy="12" r="1.5"/>
+                  </svg>
+                </div>
+                <div class="bento-skill-info">
+                  <div class="bento-skill-name">Substance</div>
+                  <div class="bento-skill-subtext">PBR Текстурирование 3D</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contacts Overlay Modal (Slide-in panel from top to bottom) -->
+  <div class="info-overlay-modal" id="contacts-modal">
+    <!-- Minimalist Floating Back Button pinned to top-right -->
+    <button class="info-modal-close hoverable" aria-label="Закрыть">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-content">
+      <div class="contacts-block" style="max-width: 900px;">
+        <span class="info-label">Связь</span>
+        <h2 class="info-section-title">Контакты</h2>
+        <div class="info-contacts-links">
+          <div class="info-contact-item">
+            <span class="contact-lbl">Telegram</span>
+            <a href="https://t.me/Saske_2k18" target="_blank" class="contact-lnk hoverable">@Saske_2k18</a>
+          </div>
+          <div class="info-contact-item">
+            <span class="contact-lbl">Email</span>
+            <a href="mailto:shcherbinindaniil@gmail.com" class="contact-lnk hoverable">shcherbinindaniil@gmail.com</a>
+          </div>
+          <div class="info-contact-item">
+            <span class="contact-lbl">Телефон</span>
+            <a href="tel:+79029397362" class="contact-lnk hoverable">+7 (902) 939-73-62</a>
+          </div>
+          <div class="info-contact-item">
+            <span class="contact-lbl">Локация</span>
+            <span class="contact-txt">Москва, м. Ботанический сад</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Details Modal Overlay (Robin Noguier Style: immersive swipe panel) -->
+  <div class="modal-overlay" id="project-modal">
+    
+    <!-- Background Blobs inside the project case details modal -->
+    <div class="background-blobs">
+      
+      <!-- Blob 1: Wavy Peanut Shape (Top-Left) -->
+      <svg class="blob blob-1" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="modal-blob-grad-unified-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+            <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+            <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+            <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+            <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+            <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#modal-blob-grad-unified-1)">
+          <animate 
+            attributeName="d" 
+            dur="25s" 
+            repeatCount="indefinite"
+            values="
+              M 40,40 C 80,20 90,80 140,50 C 180,20 170,120 130,140 C 90,160 80,110 40,130 C 10,150 20,70 40,40 Z;
+              M 50,30 C 90,10 110,60 150,40 C 190,20 180,110 140,130 C 100,150 90,100 50,120 C 10,140 10,50 50,30 Z;
+              M 35,45 C 75,25 95,75 135,45 C 175,15 165,115 125,135 C 85,155 85,105 45,125 C 5,145 15,65 35,45 Z;
+              M 40,40 C 80,20 90,80 140,50 C 180,20 170,120 130,140 C 90,160 80,110 40,130 C 10,150 20,70 40,40 Z
+            "
+          />
+        </path>
+      </svg>
+
+      <!-- Blob 2: Hook / Comma Shape (Bottom-Right) -->
+      <svg class="blob blob-2" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="modal-blob-grad-unified-2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+            <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+            <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+            <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+            <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+            <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#modal-blob-grad-unified-2)">
+          <animate 
+            attributeName="d" 
+            dur="30s" 
+            repeatCount="indefinite"
+            values="
+              M 50,30 C 90,20 120,50 140,90 C 160,130 180,170 140,170 C 100,170 90,120 70,110 C 50,100 20,130 20,90 C 20,50 30,30 50,30 Z;
+              M 45,35 C 85,25 115,55 135,85 C 155,115 175,165 135,165 C 95,165 85,115 65,105 C 45,95 15,125 15,85 C 15,45 25,35 45,35 Z;
+              M 55,25 C 95,15 125,45 145,95 C 165,145 185,175 145,175 C 105,175 95,125 75,115 C 55,105 25,135 25,95 C 25,55 35,25 55,25 Z;
+              M 50,30 C 90,20 120,50 140,90 C 160,130 180,170 140,170 C 100,170 90,120 70,110 C 50,100 20,130 20,90 C 20,50 30,30 50,30 Z
+            "
+          />
+        </path>
+      </svg>
+
+      <!-- Blob 3: Clover / Splatter Shape (Bottom-Left) -->
+      <svg class="blob blob-3" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="modal-blob-grad-unified-3" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+            <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+            <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+            <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+            <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+            <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#modal-blob-grad-unified-3)">
+          <animate 
+            attributeName="d" 
+            dur="22s" 
+            repeatCount="indefinite"
+            values="
+              M 60,40 C 90,20 120,50 120,80 C 120,110 160,130 130,160 C 100,190 70,160 50,160 C 30,160 20,120 30,90 C 40,60 30,60 60,40 Z;
+              M 55,45 C 85,25 115,45 115,75 C 115,105 155,125 125,155 C 95,185 65,155 45,155 C 25,155 15,115 25,85 C 35,55 25,55 55,45 Z;
+              M 65,35 C 95,15 125,55 125,85 C 125,115 165,135 135,165 C 105,195 75,165 55,165 C 35,165 25,125 35,95 C 45,65 35,65 65,35 Z;
+              M 60,40 C 90,20 120,50 120,80 C 120,110 160,130 130,160 C 100,190 70,160 50,160 C 30,160 20,120 30,90 C 40,60 30,60 60,40 Z
+            "
+          />
+        </path>
+      </svg>
+
+      <!-- Blob 4: Elongated Spatter (Top-Right) -->
+      <svg class="blob blob-4" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="modal-blob-grad-unified-4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.32"/>
+            <stop offset="20%" stop-color="#3a86ff" stop-opacity="0.22"/>
+            <stop offset="40%" stop-color="#8338ec" stop-opacity="0.16"/>
+            <stop offset="60%" stop-color="#00f2fe" stop-opacity="0.18"/>
+            <stop offset="80%" stop-color="#3a86ff" stop-opacity="0.10"/>
+            <stop offset="95%" stop-color="#8338ec" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#8338ec" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#modal-blob-grad-unified-4)">
+          <animate 
+            attributeName="d" 
+            dur="28s" 
+            repeatCount="indefinite"
+            values="
+              M 50,20 C 80,40 100,60 120,100 C 140,140 160,180 120,180 C 80,180 90,140 60,110 C 30,80 20,40 50,20 Z;
+              M 45,25 C 75,45 95,65 115,95 C 135,125 155,175 115,175 C 75,175 85,135 55,105 C 25,75 15,45 45,25 Z;
+              M 55,15 C 85,35 105,55 125,105 C 145,155 165,185 125,185 C 85,185 95,145 65,115 C 35,85 25,35 55,15 Z;
+              M 50,20 C 80,40 100,60 120,100 C 140,140 160,180 120,180 C 80,180 90,140 60,110 C 30,80 20,40 50,20 Z
+            "
+          />
+        </path>
+      </svg>
+
+    </div>
+
+    <!-- Minimalist Floating Back Button pinned to top-left -->
+    <button class="modal-close-btn hoverable" id="modal-close-btn" aria-label="Назад">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 5 5 12 12 19"></polyline>
+      </svg>
+    </button>
+
+    <div class="modal-content">
+      <!-- Scrollable body content -->
+      <div class="modal-body" id="modal-project-body">
+        <!-- Content blocks rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конструктор кейсов | Панель управления портфолио</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+  <!-- Supabase JS Client library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Admin Header -->
+  <header style="position: absolute; top: 0; left: 0; width: 100%;">
+    <div class="container">
+      <div class="nav-container" style="border-radius: 20px; padding: 10px 24px;">
+        <a href="/" class="logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Управление Портфолио
+        </a>
+        <div class="nav-actions">
+          <a href="/" class="btn-admin">Вернуться на сайт</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 120px; min-height: 100vh;">
+    <div class="container">
+      
+      <!-- Screen 1: Projects List -->
+      <section id="projects-list-screen" class="admin-card">
+        <div class="admin-card-header">
+          <h2>Мои проекты</h2>
+          <button id="btn-create-new" class="btn-primary hoverable" style="padding: 10px 24px; font-size: 0.9rem;">+ Создать проект</button>
+        </div>
+        
+        <div class="projects-list-grid" id="projects-list-grid">
+          <!-- Rendered dynamically -->
+          <div style="text-align: center; color: var(--text-muted); padding: 40px; grid-column: 1/-1;">
+            Загрузка списка проектов...
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen 2: Case Study Builder (Hidden by default) -->
+      <section id="project-editor-screen" class="admin-card" style="display: none;">
+        <div class="admin-card-header">
+          <h2 id="editor-screen-title">Редактирование проекта</h2>
+          <div class="editor-header-buttons">
+            <button id="btn-cancel" class="btn-secondary hoverable" style="padding: 10px 24px; font-size: 0.9rem;">Отмена</button>
+            <button id="btn-save-project" class="btn-primary hoverable" style="padding: 10px 24px; font-size: 0.9rem;">Сохранить проект</button>
+          </div>
+        </div>
+
+        <form id="project-metadata-form" class="editor-form">
+          <input type="hidden" id="project-id-field">
+          
+          <div class="editor-grid-2col">
+            <div class="form-group">
+              <label for="project-title-field" class="form-label">Название проекта *</label>
+              <input type="text" id="project-title-field" class="form-input" placeholder="Например: Ребрендинг кофе-шопа" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="project-category-field" class="form-label">Категория *</label>
+              <select id="project-category-field" class="form-input" style="background-color: #1f1f23;" required>
+                <option value="3d">3D Графика</option>
+                <option value="motion">Моушн дизайн</option>
+                <option value="graphic">Графический дизайн</option>
+                <option value="presentation">Дизайн презентаций</option>
+                <option value="print">Верстка полиграфии</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="editor-grid-2col">
+            <div class="form-group">
+              <label for="project-client-field" class="form-label">Клиент</label>
+              <input type="text" id="project-client-field" class="form-input" placeholder="Например: Самокат / Сбер">
+            </div>
+            
+            <div class="form-group">
+              <label for="project-date-field" class="form-label">Дата реализации</label>
+              <input type="month" id="project-date-field" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="project-desc-field" class="form-label">Краткое описание (для карточки)</label>
+            <input type="text" id="project-desc-field" class="form-input" placeholder="Короткое предложение, описывающее проект">
+          </div>
+
+          <!-- Cover Image Dropzone -->
+          <div class="form-group">
+            <label class="form-label">Обложка проекта</label>
+            <div class="upload-dropzone" id="cover-dropzone">
+              <input type="file" id="cover-file-input" accept="image/*" style="display: none;">
+              <div class="dropzone-text" id="cover-dropzone-text">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <p>Нажмите или перетащите изображение для обложки</p>
+                <span class="file-limits">Поддерживаются: JPG, PNG, WEBP</span>
+              </div>
+              <div class="cover-preview-wrapper" id="cover-preview-wrapper" style="display: none;">
+                <img id="cover-img-preview" src="" alt="Обложка">
+                <button type="button" class="btn-remove-file" id="btn-remove-cover">×</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Behance Case Study Builder Workspace -->
+        <div class="builder-section">
+          <h3 class="builder-title">Конструктор кейса (блоки контента)</h3>
+          <p class="builder-subtitle">Добавляйте текстовые описания, загружайте изображения, видеоролики и PDF-файлы. Меняйте блоки местами для создания идеальной верстки.</p>
+
+          <!-- The Stack of Blocks -->
+          <div class="blocks-stack" id="blocks-stack">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Add Blocks Interface -->
+          <div class="add-blocks-toolbar">
+            <button type="button" class="btn-add-block" data-type="text">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              Текст
+            </button>
+            <button type="button" class="btn-add-block" data-type="image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Изображение
+            </button>
+            <button type="button" class="btn-add-block" data-type="video">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Видео
+            </button>
+            <button type="button" class="btn-add-block" data-type="pdf">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              PDF Документ
+            </button>
+          </div>
+        </div>
+
+        <!-- Footer actions inside editor -->
+        <div class="editor-footer-actions">
+          <button id="btn-delete-project" type="button" class="btn-secondary" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2);">
+            Удалить этот проект
+          </button>
+          <button id="btn-save-project-bottom" class="btn-primary hoverable">
+            Сохранить проект
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 DESIGNER. Панель управления.</p>
+    </div>
+  </footer>
+
+  <!-- Auth Overlay for Cloud Mode -->
+  <div class="auth-overlay" id="auth-overlay" style="display: none;">
+    <div class="auth-box">
+      <h2 style="font-family: var(--font-heading); margin-bottom: 8px;">Вход в панель</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">Введите почту и пароль администратора Supabase</p>
+      <form id="auth-form" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="auth-email" class="form-label">Email</label>
+          <input type="email" id="auth-email" class="form-input" placeholder="admin@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="auth-password" class="form-label">Пароль</label>
+          <input type="password" id="auth-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="form-submit-btn hoverable" style="margin-top: 10px;">Войти</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

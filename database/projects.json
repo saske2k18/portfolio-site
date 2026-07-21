@@ -1,0 +1,70 @@
+[
+  {
+    "id": "moscow-3-architectural-visualization",
+    "title": "Москва-3",
+    "category": "3d",
+    "description": "Концепция развития территории площадью 42 га: интеграция с МЦД-5 и парком Сокольники, 3D-визуализация премиум-класса.",
+    "coverImage": "/uploads/архитектурная визуализация москва-3/123123123123231.jpg",
+    "client": "Градостроительный комплекс Москвы",
+    "date": "2026-07",
+    "blocks": [
+      {
+        "type": "text",
+        "value": "<div class=\"project-editorial-intro\">\n  <div class=\"intro-left\">\n    <span class=\"editorial-label\">КОНЦЕПЦИЯ РАЗВИТИЯ</span>\n    <h3 class=\"editorial-main-title\">МАСШТАБНАЯ РЕГЕНЕРАЦИЯ «МОСКВА-3»</h3>\n  </div>\n  <div class=\"intro-right\">\n    <p class=\"editorial-lead\">Актуальность проекта обусловлена развитием транспортного узла МЦД-5 и интеграцией заброшенных железнодорожных зон в единую городскую ткань столицы. Цель концепции — превратить депрессивную территорию в современный, функциональный и комфортный многофункциональный район.</p>\n  </div>\n</div>"
+      },
+      {
+        "type": "text",
+        "value": "<div class=\"project-editorial-grid-1\">\n  <div class=\"editorial-col-7 hoverable\">\n    <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0.jpg\" alt=\"Интеграция ТПУ\" loading=\"lazy\">\n  </div>\n  <div class=\"editorial-col-5\">\n    <div class=\"editorial-sub-card hoverable\">\n      <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (1).jpg\" alt=\"Вид с путепровода\" loading=\"lazy\">\n    </div>\n    <div class=\"editorial-sub-card hoverable\">\n      <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (2).jpg\" alt=\"Вид с парковой зоны\" loading=\"lazy\">\n    </div>\n  </div>\n</div>"
+      },
+      {
+        "type": "text",
+        "value": "<div class=\"metrics-editorial-grid\">\n  <div class=\"metric-card\">\n    <span class=\"metric-num\">42 Га</span>\n    <span class=\"metric-desc\">Общая площадь территории проектирования</span>\n  </div>\n  <div class=\"metric-card\">\n    <span class=\"metric-num\">320к м²</span>\n    <span class=\"metric-desc\">Высокотехнологичная жилая застройка (бизнес-класс)</span>\n  </div>\n  <div class=\"metric-card\">\n    <span class=\"metric-num\">180к м²</span>\n    <span class=\"metric-desc\">Общественно-деловой кластер и офисы</span>\n  </div>\n  <div class=\"metric-card\">\n    <span class=\"metric-num\">12 Га</span>\n    <span class=\"metric-desc\">Озеленение, интеграция с парком Сокольники</span>\n  </div>\n</div>"
+      },
+      {
+        "type": "carousel",
+        "title": "Часть I. Рекреация, набережные и парки",
+        "urls": [
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (3).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (4).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (5).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (6).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (7).jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "value": "<div class=\"pipeline-editorial-section\">\n  <h3 class=\"pipeline-section-title\">🛠️ ПАЙПЛАЙН РАЗРАБОТКИ И ВИЗУАЛИЗАЦИИ</h3>\n  <div class=\"pipeline-cards-grid\">\n    <div class=\"pipeline-card\">\n      <span class=\"pipeline-step\">01</span>\n      <h4 class=\"pipeline-card-title\">Сбор & Аналитика</h4>\n      <p class=\"pipeline-card-desc\">Анализ территории Ярославского ж/д направления, прилегающих зон парка Сокольники и ТПУ. Сборка базовых BIM-моделей в Revit/Archicad.</p>\n    </div>\n    <div class=\"pipeline-card\">\n      <span class=\"pipeline-step\">02</span>\n      <h4 class=\"pipeline-card-title\">Объемный Каркас</h4>\n      <p class=\"pipeline-card-desc\">Построение объемно-пространственного каркаса района в 3ds Max. Моделирование рельефа, путепроводов и пешеходных мостов.</p>\n    </div>\n    <div class=\"pipeline-card\">\n      <span class=\"pipeline-step\">03</span>\n      <h4 class=\"pipeline-card-title\">PBR Текстуры</h4>\n      <p class=\"pipeline-card-desc\">Детализация асфальта, мощения дорог и фасадов в Substance Painter для придания реалистичной шероховатости и отражений.</p>\n    </div>\n    <div class=\"pipeline-card\">\n      <span class=\"pipeline-step\">04</span>\n      <h4 class=\"pipeline-card-title\">Corona Renderer</h4>\n      <p class=\"pipeline-card-desc\">Настройка источников освещения, Corona Sun/Sky и HDRI-карт для точной передачи времени суток, тумана и атмосферной дымки.</p>\n    </div>\n    <div class=\"pipeline-card\">\n      <span class=\"pipeline-step\">05</span>\n      <h4 class=\"pipeline-card-title\">Photoshop & AI</h4>\n      <p class=\"pipeline-card-desc\">Matte-painting в Photoshop + использование Stable Diffusion & ControlNet для интеграции людей, машин и улучшения микродеталей асфальта.</p>\n    </div>\n  </div>\n</div>"
+      },
+      {
+        "type": "text",
+        "value": "<div class=\"project-editorial-grid-2\">\n  <div class=\"editorial-col-5\">\n    <div class=\"editorial-sub-card hoverable\">\n      <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (8).jpg\" alt=\"Жилые фасады\" loading=\"lazy\">\n    </div>\n    <div class=\"editorial-sub-card hoverable\">\n      <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (9).jpg\" alt=\"Пешеходный мост\" loading=\"lazy\">\n    </div>\n  </div>\n  <div class=\"editorial-col-7 hoverable\">\n    <img src=\"/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (10).jpg\" alt=\"Деловая застройка\" loading=\"lazy\">\n  </div>\n</div>"
+      },
+      {
+        "type": "carousel",
+        "title": "Часть II. Вечернее освещение и AI детализация",
+        "urls": [
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (11).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (12).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (13).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (14).jpg",
+          "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (15).jpg"
+        ]
+      },
+      {
+        "type": "image",
+        "url": "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (16).jpg",
+        "caption": "Ночной ракурс на жилой квартал с высоты птичьего полета"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-0 (17).jpg",
+        "caption": "Закат над общественным центром и набережной"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/архитектурная визуализация москва-3/seedream-5.0-pro_Transform_this_architectural_render_into_an_ultra-photorealistic_visualization_w-2.jpg",
+        "caption": "Фрагмент жилой застройки: текстурирование и проработка деталей мощения"
+      }
+    ]
+  }
+]
