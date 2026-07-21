@@ -88,17 +88,25 @@ async function fetchAndRenderProjects() {
         coverImage: p.coverImage || p.coverimage
       }));
     } else {
-      console.log('Fetching projects from Local API...');
-      const response = await fetch('/api/projects');
-      if (!response.ok) throw new Error('API server returned error');
-      allProjects = await response.json();
+      console.log('Fetching projects...');
+      let response;
+      try {
+        response = await fetch('/api/projects');
+        if (!response.ok) throw new Error();
+        allProjects = await response.json();
+      } catch (e) {
+        console.log('Local API not available, fetching static database...');
+        response = await fetch('/database/projects.json');
+        if (!response.ok) throw new Error('Failed to fetch static projects');
+        allProjects = await response.json();
+      }
     }
     renderProjects(allProjects);
   } catch (err) {
     console.error('Error fetching projects:', err);
     grid.innerHTML = `
       <div class="loading-status" style="color: #ff5c12;">
-        Не удалось загрузить проекты. ${useSupabase ? 'Проверьте соединение с Supabase.' : 'Убедитесь, что сервер Node.js запущен на порту 3000.'}
+        Не удалось загрузить проекты. Убедитесь, что база данных доступна.
       </div>
     `;
   }
