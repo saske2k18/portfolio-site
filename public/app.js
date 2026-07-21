@@ -123,6 +123,7 @@ const CATEGORY_MAP = {
 
 // Project specific configurations: colors (body background), brightness, title fonts, and premium accent colors matching palettes
 const PROJECT_THEMES = {
+  'moscow-3-architectural-visualization': { bgHex: '#e2eae5', accentHex: '#1b5e3a', fontClass: 'font-display-outfit', isDark: false },
   '3d': { bgHex: '#0b0b0b', accentHex: '#dfb26c', fontClass: 'font-serif-dm', isDark: true },          // Gold accent on dark
   'motion': { bgHex: '#3b1eb0', accentHex: '#ff7df2', fontClass: 'font-display-syne', isDark: true },    // Neon pink accent on purple
   'presentation': { bgHex: '#ff2121', accentHex: '#ffd23f', fontClass: 'font-serif-playfair', isDark: true }, // Warm yellow accent on red
@@ -166,7 +167,7 @@ function renderProjects(projects) {
   
   projects.forEach((proj, idx) => {
     // 1. Get configurations for backgrounds and fonts
-    const theme = PROJECT_THEMES[proj.category] || THEME_CYCLE[idx % THEME_CYCLE.length];
+    const theme = PROJECT_THEMES[proj.id] || PROJECT_THEMES[proj.category] || THEME_CYCLE[idx % THEME_CYCLE.length];
     
     // 2. Select Cover Visual
     let coverUrl = '/placeholder-cover.jpg';
@@ -326,7 +327,7 @@ function setupVisualSnapObserver() {
         
         if (!proj) return;
 
-        const theme = PROJECT_THEMES[proj.category] || THEME_CYCLE[activeIdx % THEME_CYCLE.length];
+        const theme = PROJECT_THEMES[proj.id] || PROJECT_THEMES[proj.category] || THEME_CYCLE[activeIdx % THEME_CYCLE.length];
 
         document.body.style.backgroundColor = theme.bgHex;
         
@@ -352,6 +353,15 @@ function setupVisualSnapObserver() {
             block.classList.add('active');
           } else {
             block.classList.remove('active');
+          }
+        });
+
+        // Set active class on the centered visual card item
+        visualItems.forEach((vItem, vIdx) => {
+          if (vIdx === activeIdx) {
+            vItem.classList.add('active');
+          } else {
+            vItem.classList.remove('active');
           }
         });
 
@@ -441,7 +451,11 @@ function setupModal() {
 
   const closeModal = () => {
     modal.classList.remove('active');
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
+    const pager = document.getElementById('projects-pager');
+    if (pager) pager.style.display = '';
     
     const videos = modal.querySelectorAll('video');
     videos.forEach(v => v.pause());
@@ -467,8 +481,14 @@ function openProjectModal(project) {
   const modal = document.getElementById('project-modal');
   if (!modal) return;
 
+  document.documentElement.classList.add('modal-open');
+  document.body.classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+  const pager = document.getElementById('projects-pager');
+  if (pager) pager.style.display = 'none';
+
   const activeIdx = allProjects.findIndex(p => p.id === project.id);
-  const theme = PROJECT_THEMES[project.category] || THEME_CYCLE[activeIdx % THEME_CYCLE.length];
+  const theme = PROJECT_THEMES[project.id] || PROJECT_THEMES[project.category] || THEME_CYCLE[activeIdx % THEME_CYCLE.length];
 
   // Inherit active project style properties (Background, text colors, and font configurations)
   modal.style.backgroundColor = theme.bgHex;
@@ -497,8 +517,10 @@ function openProjectModal(project) {
     
     switch (block.type) {
       case 'text':
+        const htmlContent = parseMarkdown(block.value);
+        if (!htmlContent || !htmlContent.trim()) return;
         blockEl.className = 'block-text';
-        blockEl.innerHTML = parseMarkdown(block.value);
+        blockEl.innerHTML = htmlContent;
         break;
 
       case 'image':
@@ -512,7 +534,10 @@ function openProjectModal(project) {
       case 'video':
         blockEl.className = 'block-video';
         blockEl.innerHTML = `
-          <video src="${block.url}" controls playsinline preload="metadata"></video>
+          <h3 class="pipeline-section-title" style="margin-bottom: 25px;">ДЕМОНСТРАЦИОННЫЙ ВИДЕОРОЛИК</h3>
+          <div class="block-video-wrapper">
+            <video src="${block.url}" controls playsinline preload="metadata"></video>
+          </div>
           ${block.caption ? `<div class="block-caption">${block.caption}</div>` : ''}
         `;
         break;
@@ -557,9 +582,9 @@ function openProjectModal(project) {
         const containerHeight = modalContent.clientHeight;
         const scrollTop = modalContent.scrollTop;
         
-        // Sticky offset of 60px is subtracted from triggers matching CSS top: 60px rule
-        const startScroll = wrapperTop - 60;
-        const endScroll = wrapperTop + (wrapperHeight - containerHeight) - 60;
+        // Sticky offset of 40px is subtracted from triggers matching CSS top: 40px rule
+        const startScroll = wrapperTop - 40;
+        const endScroll = wrapperTop + (wrapperHeight - containerHeight) - 40;
         
         if (scrollTop >= startScroll && scrollTop <= endScroll) {
           const progress = (scrollTop - startScroll) / (endScroll - startScroll);

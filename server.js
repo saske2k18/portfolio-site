@@ -51,7 +51,7 @@ const upload = multer({
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(PUBLIC_DIR));
+app.use(express.static(PUBLIC_DIR, { etag: false, maxAge: 0 }));
 app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Scan workspace for root files and migrate them to database
