@@ -4,12 +4,17 @@
   "description": "Premium portfolio website with a Behance-like visual case study builder",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "dependencies": {
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1"
   },
   "author": "Antigravity",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^4.113.0"
+  }
 }
