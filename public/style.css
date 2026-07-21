@@ -2936,6 +2936,168 @@ body.modal-open .projects-vertical-pager,
   }
 }
 
+/* --- Bento UI Grid (6 Columns Full Width & Stretched Cards) --- */
+.bento-ui-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  grid-auto-flow: dense;
+  width: 100%;
+  align-items: stretch;
+}
+
+.bento-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 90px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(223, 178, 108, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(223, 178, 108, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bento-card-full {
+  grid-column: span 6;
+  min-height: 80px;
+  padding: 12px 20px;
+}
+
+.bento-card-span-4 {
+  grid-column: span 4;
+  min-height: 110px;
+  padding: 12px 18px;
+}
+
+.bento-card-span-3 {
+  grid-column: span 3;
+  min-height: 160px;
+  padding: 14px 20px;
+}
+
+.bento-card-span-2 {
+  grid-column: span 2;
+  min-height: 95px;
+  padding: 12px 16px;
+}
+
+.bento-card-square {
+  grid-column: span 1;
+  min-height: 90px;
+  padding: 10px 12px;
+}
+
+.bento-card-compact {
+  grid-column: span 1;
+  min-height: 90px;
+  padding: 10px 12px;
+}
+
+.bento-card img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover img {
+  transform: scale(1.03);
+}
+
+/* For icons inside bento cards */
+.bento-card-square.icon-card img,
+.bento-card-compact.icon-card img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 16px rgba(223, 178, 108, 0.35));
+}
+
+/* Compact scaled-down images for targeted UI cards (кнопки-23, кнопки-25, кнопки1-67, кнопки5-91) */
+.bento-card.bento-card-max-fill {
+  padding: 12px 16px !important;
+}
+
+.bento-card.bento-card-max-fill img {
+  width: 48% !important;
+  height: 48% !important;
+  max-width: 48% !important;
+  max-height: 48% !important;
+  object-fit: contain;
+  transform: none;
+}
+
+.bento-card.bento-card-max-fill:hover img {
+  transform: scale(1.05);
+}
+
+/* Progress bar card (кнопки5-93.png) 1.2x smaller image */
+.bento-card.bento-card-progress-bar {
+  padding: 8px 12px !important;
+}
+
+.bento-card.bento-card-progress-bar img {
+  width: 75% !important;
+  height: 75% !important;
+  max-width: 75% !important;
+  max-height: 75% !important;
+  object-fit: contain;
+  transform: none;
+}
+
+.bento-card.bento-card-progress-bar:hover img {
+  transform: scale(1.03);
+}
+
+.theme-dark-text .bento-card {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.theme-dark-text .bento-card:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #1b5e3a;
+  box-shadow: 0 10px 25px rgba(27, 94, 58, 0.15);
+}
+
+@media (max-width: 992px) {
+  .bento-ui-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .bento-card-full { grid-column: span 4; }
+  .bento-card-span-4 { grid-column: span 4; }
+  .bento-card-span-3 { grid-column: span 2; }
+  .bento-card-span-2 { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .bento-ui-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .bento-card-full, .bento-card-span-4, .bento-card-span-3 { grid-column: span 3; }
+  .bento-card-span-2 { grid-column: span 2; }
+}
+
+
 
 
 
