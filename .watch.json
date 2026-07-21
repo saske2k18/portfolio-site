@@ -1,0 +1,21 @@
+{
+  "install": {
+    "include": [
+      "^package\\.json$",
+      "^package-lock\\.json$"
+    ]
+  },
+  "restart": {
+    "exclude": [
+      "^database/.*",
+      "^uploads/.*"
+    ],
+    "include": [
+      "\\\\.js$",
+      "\\\\.json$",
+      "\\\\.html$",
+      "\\\\.css$"
+    ]
+  },
+  "throttle": 1000
+}
